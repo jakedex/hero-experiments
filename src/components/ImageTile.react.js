@@ -12,7 +12,7 @@ const getStyle = ({ x, y }, mode) => {
     },
     fade: {
       container: { cursor: 'ew-resize' },
-      image: { opacity: 1.0 * (x / IMG_HEIGHT), objectFit: 'cover' }
+      image: { opacity: 1.0 * (x / IMG_WIDTH), objectFit: 'cover' }
     },
   };
 

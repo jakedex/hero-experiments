@@ -6,6 +6,7 @@ import mtnSketch from './img/mtn.svg';
 import mtnImage from './img/mtn.jpg';
 import houseSketch from './img/house.svg';
 import houseImage from './img/house.jpg';
+import DrawingTile from './components/DrawingTile.react';
 import ImageTile from './components/ImageTile.react';
 import VideoTile from './components/VideoTile.react';
 import './App.css';
@@ -28,7 +29,7 @@ class App extends Component {
           </div>
         </div>
         <div className="fl w-25 h-33 pa2">
-          <ImageTile mode="fade" image={desertImage} sketch={desertSketch} />
+          <DrawingTile image={desertImage} sketch={desertSketch} />
         </div>
         <div className="fl w-25 h-33 pa2">
           <ImageTile mode="reveal" image={mtnImage} sketch={mtnSketch} />
