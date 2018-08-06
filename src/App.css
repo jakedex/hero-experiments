@@ -1,0 +1,26 @@
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.h-33 {
+  height: 33.333%;
+}
+
+.h-66 {
+  height: 66.666%;
+}
+
+header {
+  height: 640px;
+}
+
+hr {
+  margin: 2rem 0;
+  border: none;
+  border-top: 1px dotted #ddd;
+}
+
+.outline {
+  outline: 2px solid;
+}
