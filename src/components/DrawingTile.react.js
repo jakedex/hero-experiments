@@ -9,7 +9,7 @@ const IMG_WIDTH = 238;
 const HORIZON_HEIGHT = 85;
 
 const COLORS = [
-  { sun: '#FDAD2A', lines: '#FDAD2A' },
+  { sun: '#FDAD2A', lines: '#fff' },
   { sun: '#fff', lines: '#fff' },
   { sun: '#8D65F2', lines: '#fff' },
   { sun: '#FFF500', lines: '#FFF500' },
@@ -76,10 +76,10 @@ class DrawingTile extends Component {
   onClick() {
     const { x, y } = this.state;
 
-    this.setState({
-      sun: { position: { x, y }, colorIndex: this.state.colorIndex },
-      colorIndex: this.state.colorIndex < COLORS.length - 1 ? this.state.colorIndex + 1 : 0
-    });
+    // this.setState({
+    //   sun: { position: { x, y }, colorIndex: this.state.colorIndex },
+    //   colorIndex: this.state.colorIndex < COLORS.length - 1 ? this.state.colorIndex + 1 : 0
+    // });
   }
 
   onMouseOver({ position, elementDimensions }) {
@@ -108,7 +108,8 @@ class DrawingTile extends Component {
         <div class="outline w-100 h-100 relative" style={style.container} onMouseOut={this.onMouseOut} onClick={this.onClick}>
           <ReactCursorPosition onPositionChanged={this.onMouseOver}>
             <img src={image} style={{ objectFit: 'cover' }} class="w-100 h-100 absolute"/>
-            { this.state.isSketchDisplayed && <DesertSketch color={COLORS[ this.state.sun ? this.state.sun.colorIndex : this.state.colorIndex].lines} style={style.image} className="w-100 h-100 absolute" />}
+            {/* { this.state.isSketchDisplayed && <DesertSketch color={COLORS[ this.state.sun ? this.state.sun.colorIndex : this.state.colorIndex].lines} style={style.image} className="w-100 h-100 absolute" />} */}
+            { this.state.isSketchDisplayed && <img src={sketch} style={style.image} class="w-100 h-100 absolute"/>}
             { this.state.sun && <span style={{ position: 'absolute', top: this.state.sun.position.y - 24, left: this.state.sun.position.x - 24, content: getSunCSS({ y:this.state.sun.position.y, colorIndex: this.state.sun.colorIndex})}}></span>}
           </ReactCursorPosition>
         </div>
