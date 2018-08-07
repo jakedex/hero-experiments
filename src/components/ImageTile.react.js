@@ -8,11 +8,11 @@ const getStyle = ({ x, y }, mode) => {
   const modes = {
     reveal: {
       container: { cursor: 'ew-resize', backgroundColor: 'black' },
-      image: { clipPath: `inset(0 0 0 ${x}px)`, objectFit: 'cover' }
+      image: { clipPath: `inset(0 0 0 ${x}px)`, objectFit: 'cover', objectPosition: 'left' }
     },
     fade: {
       container: { cursor: 'ew-resize' },
-      image: { opacity: 1.0 * (x / IMG_WIDTH), objectFit: 'cover' }
+      image: { opacity: 1.0 * (x / IMG_WIDTH), objectFit: 'cover', objectPosition: 'left' }
     },
   };
 
@@ -46,7 +46,7 @@ class ImageTile extends Component {
     return (
         <div class="outline w-100 h-100 relative" style={style.container}>
           <ReactCursorPosition onPositionChanged={this.onMouseOver}>
-            <img src={this.props.mode === 'fade' ? image : sketch} style={{ objectFit: 'cover' }} class="w-100 h-100 absolute"/>
+            <img src={this.props.mode === 'fade' ? image : sketch} style={{ objectFit: 'cover', objectPosition: 'left' }} class="w-100 h-100 absolute"/>
             <img src={this.props.mode === 'fade' ? sketch : image} style={style.image} class="w-100 h-100 absolute"/>
           </ReactCursorPosition>
         </div>

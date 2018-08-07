@@ -42,7 +42,7 @@ class App extends Component {
         <div className="fl w-25 h-33 pa2"></div>
         <div className="fl w-25 h-33 pa2">
           <div className="outline w-100 h-100">
-            <ImageTile mode="reveal" image={houseImage} sketch={houseSketch} />
+            <ImageTile mode="fade" image={houseImage} sketch={houseSketch} />
           </div>
         </div>
         <div className="fl w-50 h-33 pa2">
