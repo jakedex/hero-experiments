@@ -36,7 +36,7 @@ class App extends Component {
           <SlidingTile image={mtnImage} sketch={mtnSketch} />
         </div>
         <div className="fl w-25 h-33 pa2">
-          <VideoTile color='#2AA3EF' videoPath="/city.mp4" />
+          <VideoTile color='#2AA3EF' objectPosition="center bottom" videoPath="/city.mp4" />
         </div>
         <div className="fl w-25 h-33 pa2"></div>
         <div className="fl w-25 h-33 pa2"></div>
@@ -46,7 +46,7 @@ class App extends Component {
           </div>
         </div>
         <div className="fl w-50 h-33 pa2">
-          <VideoTile color='#FCBE2F' videoPath="/ocean.mp4" opacity={0.8} />
+          <VideoTile color='#FCBE2F' objectPosition="left top" videoPath="/ocean.mp4" opacity={0.8} />
         </div>
       </header>
       <hr/>

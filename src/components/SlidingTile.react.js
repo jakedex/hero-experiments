@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactCursorPosition from 'react-cursor-position';
 
 // TODO remove hardcoded
-import DesertSketch from './svg/desert';
+import MtnSketch from './svg/mtn';
 
 const IMG_HEIGHT = 176;
 const IMG_WIDTH = 238;
@@ -116,8 +116,8 @@ class SlidingTile extends Component {
     return (
         <div class="outline w-100 h-100 relative" style={style.container} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onClick={this.onClick}>
           <ReactCursorPosition onPositionChanged={this.onPositionChanged}>
-            <img src={sketch} style={{ objectFit: 'cover' }} class="w-100 h-100 absolute"/>
-            {/* { this.state.isSketchDisplayed && <DesertSketch color={COLORS[ this.state.sun ? this.state.sun.colorIndex : this.state.colorIndex].lines} style={style.image} className="w-100 h-100 absolute" />} */}
+            {/* <img src={sketch} style={{ objectFit: 'cover' }} class="w-100 h-100 absolute"/> */}
+            <MtnSketch color={COLORS[this.state.colorIndex].lines} className="w-100 h-100 absolute" />
             <img src={image} style={style.image} class="w-100 h-100 absolute"/>
             {this.state.isSketchDisplayed && <span style={{ position: 'absolute', top: this.state.y - 32, right: 32, content: getSunCSS(this.state)}}></span>}
           </ReactCursorPosition>

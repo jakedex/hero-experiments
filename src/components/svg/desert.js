@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default ({ color = 'white', style, className }) => (
-  <svg width="323" height="241" viewBox="0 0 323 241" fill="none" xmlns="http://www.w3.org/2000/svg" style={style} className={className}>
+  <svg viewBox="0 0 323 241" fill="none" xmlns="http://www.w3.org/2000/svg" style={style} className={className} preserveAspectRatio="xMidYMin slice">
   <mask id="mask0" masktype="alpha" maskUnits="userSpaceOnUse" x="3" y="0" width="320" height="240">
   <rect width="320" height="240" transform="translate(3)" fill="#C4C4C4"/>
   </mask>
