@@ -6,23 +6,22 @@ import DesertSketch from './svg/desert';
 
 const IMG_HEIGHT = 176;
 const IMG_WIDTH = 238;
-const HORIZON_HEIGHT = 85;
+const HORIZON_HEIGHT = 120;
 
 const COLORS = [
-  { sun: '#FDAD2A', lines: '#fff' },
-  { sun: '#fff', lines: '#FDAD2A' },
   { sun: '#8D65F2', lines: '#fff' },
-  { sun: '#FFF500', lines: '#FFF500' },
   { sun: '#ED3A5B', lines: '#ED3A5B' },
+  { sun: '#FFF500', lines: '#FFF500' },
+  { sun: '#FDAD2A', lines: '#fff' },
   { sun: '#F98FA6', lines: '#F98FA6' },
 ]
 
-const sunFull = colorIndex =>`url("data:image/svg+xml;utf8,<svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='24' cy='24' r='24' fill='${COLORS[colorIndex].sun}'/></svg>")`;
-const sunEmpty = colorIndex => `url("data:image/svg+xml;utf8,<svg opacity='0.3' width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='24' cy='24' r='22' stroke-width='3px' stroke='${COLORS[colorIndex].sun}'/></svg>")`;
+const sunFull = colorIndex =>`url("data:image/svg+xml;utf8,<svg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='32' fill='${COLORS[colorIndex].sun}'/></svg>")`;
+const sunEmpty = colorIndex => `url("data:image/svg+xml;utf8,<svg opacity='0.3' width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='30' stroke-width='3px' stroke='${COLORS[colorIndex].sun}'/></svg>")`;
 const getSunCSS = ({ y, colorIndex, isCursor = false }) => {
   const css = y < HORIZON_HEIGHT ? sunFull(colorIndex) : sunEmpty(colorIndex);
 
-  return isCursor ? `${css} 24 24, auto` : css;
+  return isCursor ? `${css} 32 32, auto` : css;
 }
 
 const getIllustrationOpacity = ({y, sun}) => {
@@ -45,7 +44,7 @@ const getStyle = (state) => {
 
   const modes = {
     reveal: {
-      container: { cursor: 'ew-resize', backgroundColor: 'black' },
+      container: { cursor: 'ew-resize', backgroundColor: 'black', overflow: 'hidden' },
       image: { clipPath: `inset(0 0 0 ${x}px)`, objectFit: 'cover' }
     },
     fade: {
@@ -54,10 +53,10 @@ const getStyle = (state) => {
     },
   };
 
-  return modes.fade;
+  return modes.reveal;
 }
 
-class DrawingTile extends Component {
+class SlidingTile extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -83,23 +82,29 @@ class DrawingTile extends Component {
     });
   }
 
+
+
   onPositionChanged({ position, elementDimensions }) {
-    this.setState({
-      x: position.x > 10 ? position.x : 0,
-      y: position.y > 10 ? position.y : 0,
-      dimensions: elementDimensions
-    });
+    if (this.state.isSketchDisplayed) {
+      this.setState({
+        x: position.x > 10 ? position.x : 0,
+        y: position.y > 10 ? position.y : 0,
+        dimensions: elementDimensions
+      });
+    }
   }
 
   onMouseEnter() {
     this.setState({
-      isSketchDisplayed: true
-    });
+      isSketchDisplayed: true,
+    })
   }
 
   onMouseLeave() {
     this.setState({
-      isSketchDisplayed: false
+      isSketchDisplayed: false,
+      x: 0,
+      y: 0,
     });
   }
 
@@ -111,14 +116,14 @@ class DrawingTile extends Component {
     return (
         <div class="outline w-100 h-100 relative" style={style.container} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onClick={this.onClick}>
           <ReactCursorPosition onPositionChanged={this.onPositionChanged}>
-            <img src={image} style={{ objectFit: 'cover' }} class="w-100 h-100 absolute"/>
-            { this.state.isSketchDisplayed && <DesertSketch color={COLORS[this.state.colorIndex].lines} style={style.image} className="w-100 h-100 absolute" />}
-            {/* { this.state.isSketchDisplayed && <img src={sketch} style={style.image} class="w-100 h-100 absolute"/>} */}
-            { this.state.sun && <span style={{ position: 'absolute', top: this.state.sun.position.y - 24, left: this.state.sun.position.x - 24, content: getSunCSS({ y:this.state.sun.position.y, colorIndex: this.state.sun.colorIndex})}}></span>}
+            <img src={sketch} style={{ objectFit: 'cover' }} class="w-100 h-100 absolute"/>
+            {/* { this.state.isSketchDisplayed && <DesertSketch color={COLORS[ this.state.sun ? this.state.sun.colorIndex : this.state.colorIndex].lines} style={style.image} className="w-100 h-100 absolute" />} */}
+            <img src={image} style={style.image} class="w-100 h-100 absolute"/>
+            {this.state.isSketchDisplayed && <span style={{ position: 'absolute', top: this.state.y - 32, right: 32, content: getSunCSS(this.state)}}></span>}
           </ReactCursorPosition>
         </div>
     );
   }
 }
 
-export default DrawingTile;
+export default SlidingTile;

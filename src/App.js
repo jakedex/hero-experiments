@@ -7,6 +7,7 @@ import mtnImage from './img/mtn.jpg';
 import houseSketch from './img/house.svg';
 import houseImage from './img/house.jpg';
 import DrawingTile from './components/DrawingTile.react';
+import SlidingTile from './components/SlidingTile.react';
 import ImageTile from './components/ImageTile.react';
 import VideoTile from './components/VideoTile.react';
 import './App.css';
@@ -32,7 +33,7 @@ class App extends Component {
           <DrawingTile image={desertImage} sketch={desertSketch} />
         </div>
         <div className="fl w-25 h-33 pa2">
-          <ImageTile mode="reveal" image={mtnImage} sketch={mtnSketch} />
+          <SlidingTile image={mtnImage} sketch={mtnSketch} />
         </div>
         <div className="fl w-25 h-33 pa2">
           <VideoTile color='#2AA3EF' videoPath="/city.mp4" />
