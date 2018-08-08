@@ -62,7 +62,7 @@ const capabilities = (
 
 const Home = () => (
   <React.Fragment>
-    <header className="mb3">
+    <header className="home mb3">
       <div className="desc-tile outline flex justify-center items-center">
         <h1 className="ma0 tc w-80 f2 normal">We’re a design and engineering studio that helps meaningful organizations build things for the web</h1>
       </div>
@@ -81,8 +81,15 @@ const Home = () => (
 
 const About = () => (
   <React.Fragment>
-    <header className="mb3">
-      About
+    <header className="about mb3">
+      <div className="desc-tile">
+        <h1 className="ma0 mb4 w-90 tl f2 normal">Where great design meets rock-solid technology</h1>
+        <p className="ma0 w-80 tl normal">We help organizations big and small build things for the web. From brand identities to full blown applications, our specialty lies in simplifying the modern web ecosystem with an emphasis on UI/UX, React, GraphQL and Electron based projects.</p>
+      </div>
+
+      <DrawingTile className="desert-tile" image={desertImage} sketch={desertSketch} />
+      <VideoTile className="ocean-tile" startingIndex={1} objectPosition="left top" videoPath="/ocean.mp4" opacity={0.7} />
+      {/* <VideoTile className="city-tile" objectPosition="center bottom" videoPath="/city.mp4" opacity={0.7} /> */}
     </header>
     <hr/>
     <main>
@@ -93,8 +100,15 @@ const About = () => (
 
 const Work = () => (
   <React.Fragment>
-    <header className="mb3">
-      Work/Projects
+    <header className="work mb3">
+      <div className="desc-tile">
+        <h1 className="ma0 mb2 w-90 tl f2 normal">We build amazing things</h1>
+        <p className="ma0 w-80 tl normal">and this is how we do it, dis our magic sauce</p>
+      </div>
+
+      <SlidingTile className="mtn-tile" image={mtnImage} sketch={mtnSketch} />
+      {/* <VideoTile className="ocean-tile" startingIndex={1} objectPosition="left top" videoPath="/ocean.mp4" opacity={0.7} /> */}
+      <VideoTile className="city-tile" objectPosition="center bottom" videoPath="/city.mp4" opacity={0.7} />
     </header>
     <hr/>
     <main>
