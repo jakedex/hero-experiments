@@ -11,7 +11,7 @@ const HORIZON_HEIGHT = 120;
 const COLORS = [
   { sun: '#8D65F2', lines: '#fff' },
   { sun: '#ED3A5B', lines: '#fff' },
-  { sun: '#fff', lines: '#FFF500' },
+  { sun: '#FFF500', lines: '#FDAD2A' },
   { sun: '#FDAD2A', lines: '#fff' },
   { sun: '#F98FA6', lines: '#fff' },
 ]

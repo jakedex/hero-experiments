@@ -29,6 +29,8 @@ hr {
   outline: 2px solid;
 }
 
+
+/* ------- 1 ------- */
 .desc-tile {
   grid-row: 1 / 3;
   grid-column: 1 / 3;
@@ -42,3 +44,111 @@ hr {
 .ocean-tile {
   grid-column: 3 / 5;
 }
+
+.mtn-tile {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+.desert-tile {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+.city-tile {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+}
+
+
+/* ------- 2 ------- */
+/* .desc-tile {
+  grid-row: 1 / 3;
+  grid-column: 2 / 4;
+}
+
+.house-tile {
+  grid-row: 3 / 4;
+  grid-column: 1 / 2;
+}
+
+.ocean-tile {
+  grid-column: 3 / 5;
+}
+
+.mtn-tile {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.desert-tile {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+}
+
+.city-tile {
+  grid-column: 4 / 5;
+  grid-row: 1 / 2;
+} */
+
+
+/* ------- 3 ------- */
+/* .desc-tile {
+  grid-row: 1 / 3;
+  grid-column: 1 / 3;
+}
+
+.house-tile {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+.ocean-tile {
+  grid-column: 3 / 5;
+}
+
+.mtn-tile {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+}
+
+.desert-tile {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+}
+
+.city-tile {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+} */
+
+
+/* ------- 4 ------- */
+/* .desc-tile {
+  grid-row: 1 / 3;
+  grid-column: 1 / 3;
+}
+
+.house-tile {
+  grid-column: 4 / 5;
+  grid-row: 3 / 4;
+}
+
+.ocean-tile {
+  grid-column: 1 / 3;
+}
+
+.mtn-tile {
+  grid-row: 2 / 3;
+  grid-column: 3 / 4;
+}
+
+.desert-tile {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+}
+
+.city-tile {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+} */

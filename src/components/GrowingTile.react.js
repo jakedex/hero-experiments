@@ -57,18 +57,10 @@ const getIllustrationOpacity = ({y, sun}) => {
 const getStyle = (state) => {
   const { x, y, colorIndex } = state;
 
-  const modes = {
-    reveal: {
-      container: { cursor: 'ew-resize', backgroundColor: 'black' },
-      image: { clipPath: `inset(0 0 0 ${x}px)`, objectFit: 'cover' }
-    },
-    fade: {
-      container: { overflow: 'hidden' },
-      image: { opacity: getIllustrationOpacity(state), objectFit: 'cover' }
-    },
+  return {
+    container: { overflow: 'hidden', cursor: 'crosshair' },
+    image: { opacity: getIllustrationOpacity(state), objectFit: 'cover' }
   };
-
-  return modes.fade;
 }
 
 class DrawingTile extends Component {
