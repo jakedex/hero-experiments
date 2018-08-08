@@ -44,7 +44,7 @@ class ImageTile extends Component {
     const style = getStyle(this.state, this.props.mode);
 
     return (
-        <div class="outline w-100 h-100 relative" style={style.container}>
+        <div className={`outline w-100 h-100 relative ${this.props.className}`} style={style.container}>
           <ReactCursorPosition onPositionChanged={this.onMouseOver}>
             <img src={this.props.mode === 'fade' ? image : sketch} style={{ objectFit: 'cover', objectPosition: 'left' }} class="w-100 h-100 absolute"/>
             <img src={this.props.mode === 'fade' ? sketch : image} style={style.image} class="w-100 h-100 absolute"/>

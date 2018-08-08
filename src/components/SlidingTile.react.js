@@ -109,12 +109,12 @@ class SlidingTile extends Component {
   }
 
   render() {
-    const { sketch, image } = this.props;
+    const { sketch, image, className } = this.props;
 
     const style = getStyle(this.state);
 
     return (
-        <div class="outline w-100 h-100 relative" style={style.container} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onClick={this.onClick}>
+        <div className={`outline w-100 h-100 relative ${className}`} style={style.container} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onClick={this.onClick}>
           <ReactCursorPosition onPositionChanged={this.onPositionChanged}>
             {/* <img src={sketch} style={{ objectFit: 'cover' }} class="w-100 h-100 absolute"/> */}
             <MtnSketch color={COLORS[this.state.colorIndex].lines} className="w-100 h-100 absolute" />

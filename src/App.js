@@ -6,6 +6,7 @@ import mtnSketch from './img/mtn.svg';
 import mtnImage from './img/mtn.jpg';
 import houseSketch from './img/house.svg';
 import houseImage from './img/house.jpg';
+import GrowingTile from './components/GrowingTile.react';
 import DrawingTile from './components/DrawingTile.react';
 import SlidingTile from './components/SlidingTile.react';
 import ImageTile from './components/ImageTile.react';
@@ -24,30 +25,14 @@ class App extends Component {
         </div>
       </nav>
       <header className="mb3">
-        <div className="fl w-50 h-66 pa2">
-          <div className="outline w-100 h-100 flex justify-center items-center">
-            <h1 className="ma0 tc w-80 f2 normal">We’re a design and engineering studio that helps meaningful organizations build things for the web</h1>
-          </div>
+        <div className="desc-tile outline flex justify-center items-center">
+          <h1 className="ma0 tc w-80 f2 normal">We’re a design and engineering studio that helps meaningful organizations build things for the web</h1>
         </div>
-        <div className="fl w-25 h-33 pa2">
-          <DrawingTile image={desertImage} sketch={desertSketch} />
-        </div>
-        <div className="fl w-25 h-33 pa2">
-          <SlidingTile image={mtnImage} sketch={mtnSketch} />
-        </div>
-        <div className="fl w-25 h-33 pa2">
-          <VideoTile color='#2AA3EF' objectPosition="center bottom" videoPath="/city.mp4" />
-        </div>
-        <div className="fl w-25 h-33 pa2"></div>
-        <div className="fl w-25 h-33 pa2"></div>
-        <div className="fl w-25 h-33 pa2">
-          <div className="outline w-100 h-100">
-            <ImageTile mode="fade" image={houseImage} sketch={houseSketch} />
-          </div>
-        </div>
-        <div className="fl w-50 h-33 pa2">
-          <VideoTile color='#FCBE2F' objectPosition="left top" videoPath="/ocean.mp4" opacity={0.8} />
-        </div>
+        <DrawingTile className="desert-tile" image={desertImage} sketch={desertSketch} />
+        <VideoTile className="city-tile" color='#2AA3EF' objectPosition="center bottom" videoPath="/city.mp4" />
+        <SlidingTile className="mtn-tile" image={mtnImage} sketch={mtnSketch} />
+        <GrowingTile className="house-tile" image={houseImage} sketch={houseSketch} />
+        <VideoTile className="ocean-tile" color='#FCBE2F' objectPosition="left top" videoPath="/ocean.mp4" opacity={0.8} />
       </header>
       <hr/>
       <main>

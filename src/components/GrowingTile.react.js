@@ -2,42 +2,55 @@ import React, {Component} from 'react';
 import ReactCursorPosition from 'react-cursor-position';
 
 // TODO remove hardcoded
-import DesertSketch from './svg/desert';
+import HouseSketch from './svg/house';
 
 const IMG_HEIGHT = 176;
 const IMG_WIDTH = 238;
 const HORIZON_HEIGHT = 85;
+const SUN_POSITION = { x: 172, y: 64 };
 
 const COLORS = [
   { sun: '#FDAD2A', lines: '#fff' },
   { sun: '#fff', lines: '#FDAD2A' },
   { sun: '#8D65F2', lines: '#fff' },
-  { sun: '#FFF500', lines: '#FFF500' },
-  { sun: '#ED3A5B', lines: '#ED3A5B' },
-  { sun: '#F98FA6', lines: '#F98FA6' },
+  { sun: '#fff', lines: '#FFF500' },
+  { sun: '#ED3A5B', lines: '#fff' },
+  { sun: '#F98FA6', lines: '#fff' },
 ]
 
-const sunFull = colorIndex =>`url("data:image/svg+xml;utf8,<svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='24' cy='24' r='24' fill='${COLORS[colorIndex].sun}'/></svg>")`;
-const sunEmpty = colorIndex => `url("data:image/svg+xml;utf8,<svg opacity='0.3' width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='24' cy='24' r='22' stroke-width='3px' stroke='${COLORS[colorIndex].sun}'/></svg>")`;
-const getSunCSS = ({ y, colorIndex, isCursor = false }) => {
-  const css = y < HORIZON_HEIGHT ? sunFull(colorIndex) : sunEmpty(colorIndex);
+const getDistance = (p1, p2) => Math.hypot(p2.x - p1.x, p2.y - p1.y)
 
-  return isCursor ? `${css} 24 24, auto` : css;
+const sunFull = ({colorIndex, diameter}) =>`url("data:image/svg+xml;utf8,<svg width='${diameter}' height='${diameter}' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='${diameter / 2}' cy='${diameter / 2}' r='${diameter / 2}' fill='${COLORS[colorIndex].sun}'/></svg>")`;
+const sunEmpty = colorIndex => `url("data:image/svg+xml;utf8,<svg opacity='0.3' width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='24' cy='24' r='22' stroke-width='3px' stroke='${COLORS[colorIndex].sun}'/></svg>")`;
+
+const getSunCSS = ({ x, y, colorIndex }) => {
+  const dist = getDistance({ x, y }, SUN_POSITION);
+
+  const diameter = 560 * ((200 - dist) / 200.0);
+  const radius = diameter / 2;
+
+  return {
+    content: sunFull({colorIndex, diameter}),
+    top: SUN_POSITION.y - radius,
+    left: SUN_POSITION.x - radius
+  };
 }
 
 const getIllustrationOpacity = ({y, sun}) => {
   const MAX_OPACITY = 1.0;
   const MIN_OPACITY = 0.2;
 
-  const vertical = sun ? sun.position.y : y;
+  // const vertical = sun ? sun.position.y : y;
+  //
+  // if (vertical > HORIZON_HEIGHT) {
+  //   return MIN_OPACITY;
+  // }
+  //
+  // const opacity = MAX_OPACITY * ((HORIZON_HEIGHT - vertical + 25) / HORIZON_HEIGHT);
+  //
+  // return opacity > MIN_OPACITY ? opacity : MIN_OPACITY;
 
-  if (vertical > HORIZON_HEIGHT) {
-    return MIN_OPACITY;
-  }
-
-  const opacity = MAX_OPACITY * ((HORIZON_HEIGHT - vertical + 25) / HORIZON_HEIGHT);
-
-  return opacity > MIN_OPACITY ? opacity : MIN_OPACITY;
+  return MAX_OPACITY;
 }
 
 const getStyle = (state) => {
@@ -49,7 +62,7 @@ const getStyle = (state) => {
       image: { clipPath: `inset(0 0 0 ${x}px)`, objectFit: 'cover' }
     },
     fade: {
-      container: { cursor: getSunCSS({y, colorIndex, isCursor: true}) },
+      container: { overflow: 'hidden' },
       image: { opacity: getIllustrationOpacity(state), objectFit: 'cover' }
     },
   };
@@ -107,14 +120,14 @@ class DrawingTile extends Component {
     const { sketch, image, className } = this.props;
 
     const style = getStyle(this.state);
+    const sunCSS = getSunCSS(this.state);
 
     return (
         <div className={`outline w-100 h-100 relative ${className}`} style={style.container} onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} onClick={this.onClick}>
           <ReactCursorPosition onPositionChanged={this.onPositionChanged}>
             <img src={image} style={{ objectFit: 'cover' }} class="w-100 h-100 absolute"/>
-            { this.state.isSketchDisplayed && <DesertSketch color={COLORS[this.state.colorIndex].lines} style={style.image} className="w-100 h-100 absolute" />}
-            {/* { this.state.isSketchDisplayed && <img src={sketch} style={style.image} class="w-100 h-100 absolute"/>} */}
-            { this.state.sun && <span style={{ position: 'absolute', top: this.state.sun.position.y - 24, left: this.state.sun.position.x - 24, content: getSunCSS({ y:this.state.sun.position.y, colorIndex: this.state.sun.colorIndex})}}></span>}
+            { this.state.isSketchDisplayed && <span style={{ position: 'absolute', top: sunCSS.top, left: sunCSS.left, content: sunCSS.content}}></span>}
+            { this.state.isSketchDisplayed && <HouseSketch color={COLORS[this.state.colorIndex].lines} style={style.image} className="w-100 h-100 absolute" />}
           </ReactCursorPosition>
         </div>
     );
