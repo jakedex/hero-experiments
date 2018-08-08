@@ -10,12 +10,13 @@ const HORIZON_HEIGHT = 85;
 const SUN_POSITION = { x: 172, y: 64 };
 
 const COLORS = [
-  { sun: '#FDAD2A', lines: '#fff' },
-  { sun: '#fff', lines: '#FDAD2A' },
-  { sun: '#8D65F2', lines: '#fff' },
-  { sun: '#fff', lines: '#FFF500' },
   { sun: '#ED3A5B', lines: '#fff' },
   { sun: '#F98FA6', lines: '#fff' },
+  { sun: '#FDAD2A', lines: '#fff' },
+  { sun: '#2AA3EF', lines: '#fff' },
+  { sun: '#8D65F2', lines: '#fff' },
+  { sun: '#fff', lines: '#FFF500' },
+  { sun: '#fff', lines: '#FDAD2A' },
 ]
 
 const getDistance = (p1, p2) => Math.hypot(p2.x - p1.x, p2.y - p1.y)

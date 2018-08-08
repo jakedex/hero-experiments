@@ -29,10 +29,10 @@ class App extends Component {
           <h1 className="ma0 tc w-80 f2 normal">We’re a design and engineering studio that helps meaningful organizations build things for the web</h1>
         </div>
         <DrawingTile className="desert-tile" image={desertImage} sketch={desertSketch} />
-        <VideoTile className="city-tile" color='#2AA3EF' objectPosition="center bottom" videoPath="/city.mp4" />
+        <VideoTile className="city-tile" objectPosition="center bottom" videoPath="/city.mp4" opacity={0.7} />
         <SlidingTile className="mtn-tile" image={mtnImage} sketch={mtnSketch} />
         <GrowingTile className="house-tile" image={houseImage} sketch={houseSketch} />
-        <VideoTile className="ocean-tile" color='#FCBE2F' objectPosition="left top" videoPath="/ocean.mp4" opacity={0.8} />
+        <VideoTile className="ocean-tile" startingIndex={1} objectPosition="left top" videoPath="/ocean.mp4" opacity={0.7} />
       </header>
       <hr/>
       <main>

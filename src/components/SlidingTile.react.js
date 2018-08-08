@@ -10,18 +10,18 @@ const HORIZON_HEIGHT = 120;
 
 const COLORS = [
   { sun: '#8D65F2', lines: '#fff' },
-  { sun: '#ED3A5B', lines: '#ED3A5B' },
-  { sun: '#FFF500', lines: '#FFF500' },
+  { sun: '#ED3A5B', lines: '#fff' },
+  { sun: '#fff', lines: '#FFF500' },
   { sun: '#FDAD2A', lines: '#fff' },
-  { sun: '#F98FA6', lines: '#F98FA6' },
+  { sun: '#F98FA6', lines: '#fff' },
 ]
 
-const sunFull = colorIndex =>`url("data:image/svg+xml;utf8,<svg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='32' fill='${COLORS[colorIndex].sun}'/></svg>")`;
-const sunEmpty = colorIndex => `url("data:image/svg+xml;utf8,<svg opacity='0.3' width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='30' stroke-width='3px' stroke='${COLORS[colorIndex].sun}'/></svg>")`;
-const getSunCSS = ({ y, colorIndex, isCursor = false }) => {
-  const css = y < HORIZON_HEIGHT ? sunFull(colorIndex) : sunEmpty(colorIndex);
+const sunFull = color =>`url("data:image/svg+xml;utf8,<svg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='32' fill='${color}'/></svg>")`;
+const sunEmpty = color => `url("data:image/svg+xml;utf8,<svg opacity='0.3' width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='32' cy='32' r='30' stroke-width='3px' stroke='${color}'/></svg>")`;
 
-  return isCursor ? `${css} 32 32, auto` : css;
+const getSunCSS = ({ y, colorIndex, isBG = false }) => {
+  const color = isBG ? COLORS[colorIndex].lines : COLORS[colorIndex].sun
+  return y < HORIZON_HEIGHT ? sunFull(color) : sunEmpty(color);
 }
 
 const getIllustrationOpacity = ({y, sun}) => {
@@ -44,7 +44,7 @@ const getStyle = (state) => {
 
   const modes = {
     reveal: {
-      container: { cursor: 'ew-resize', backgroundColor: 'black', overflow: 'hidden' },
+      container: { cursor: 'ew-resize', backgroundColor: COLORS[state.colorIndex].sun, overflow: 'hidden' },
       image: { clipPath: `inset(0 0 0 ${x}px)`, objectFit: 'cover' }
     },
     fade: {
@@ -118,8 +118,11 @@ class SlidingTile extends Component {
           <ReactCursorPosition onPositionChanged={this.onPositionChanged}>
             {/* <img src={sketch} style={{ objectFit: 'cover' }} class="w-100 h-100 absolute"/> */}
             <MtnSketch color={COLORS[this.state.colorIndex].lines} className="w-100 h-100 absolute" />
-            <img src={image} style={style.image} class="w-100 h-100 absolute"/>
-            {this.state.isSketchDisplayed && <span style={{ position: 'absolute', top: this.state.y - 32, right: 32, content: getSunCSS(this.state)}}></span>}
+            {this.state.isSketchDisplayed && <span style={{ position: 'absolute', top: this.state.y - 32, right: 32, content: getSunCSS({ isBG: true, ...this.state})}}></span>}
+            <div style={style.image} class="w-100 h-100 absolute">
+              <img src={image} style={style.image} class="w-100 h-100 absolute"/>
+              {this.state.isSketchDisplayed && <span style={{ position: 'absolute', top: this.state.y - 32, right: 32, mixBlendMode: 'none', content: getSunCSS(this.state)}}></span>}
+            </div>
           </ReactCursorPosition>
         </div>
     );

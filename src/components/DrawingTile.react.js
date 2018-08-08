@@ -9,12 +9,13 @@ const IMG_WIDTH = 238;
 const HORIZON_HEIGHT = 85;
 
 const COLORS = [
-  { sun: '#FDAD2A', lines: '#fff' },
-  { sun: '#fff', lines: '#FDAD2A' },
-  { sun: '#8D65F2', lines: '#fff' },
   { sun: '#FFF500', lines: '#FFF500' },
+  { sun: '#8D65F2', lines: '#fff' },
+  { sun: '#FDAD2A', lines: '#fff' },
+  { sun: '#2AA3EF', lines: '#fff' },
   { sun: '#ED3A5B', lines: '#ED3A5B' },
   { sun: '#F98FA6', lines: '#F98FA6' },
+  { sun: '#fff', lines: '#FDAD2A' },
 ]
 
 const sunFull = colorIndex =>`url("data:image/svg+xml;utf8,<svg width='48' height='48' viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'><circle cx='24' cy='24' r='24' fill='${COLORS[colorIndex].sun}'/></svg>")`;
