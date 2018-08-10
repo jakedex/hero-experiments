@@ -20,7 +20,10 @@ import field4 from './img/field-4.jpg';
 import fog from './img/fog.jpg';
 import forest from './img/forest.jpg';
 import forest2 from './img/forest-2.jpg';
+import forest3 from './img/forest-3.jpg';
 import leaf from './img/leaf.jpg';
+import leaf2 from './img/leaf-2.jpg';
+import leaf3 from './img/leaf-3.jpg';
 import snow from './img/snow.jpg';
 
 import './App.css';
@@ -97,14 +100,15 @@ const Home2 = () => (
         <h1 className="ma0 tc w-80 f2 normal">We’re a design and engineering studio that helps meaningful organizations build things for the web</h1>
       </div>
 
-      <VideoTile className="vid-1" grayscale={true} objectPosition="center center" videoPath="/media/clouds.mp4" opacity={1} />
+      <VideoTile className="vid-1" grayscale={true} objectPosition="center center" videoPath="/media/clouds.mp4" opacity={0.7} />
       {/* <div className="vid-2 outline w-100 h-100 relative">
-        <img className="w-100 h-100" style={{ objectFit: 'cover', objectPosition: 'center center', opacity: 0.9 }} src={forest2} alt=""/>
+        <img className="w-100 h-100" style={{ objectFit: 'cover', objectPosition: 'center center', opacity: 0.7 }} src={forest} alt=""/>
       </div> */}
       <div className="vid-3 outline w-100 h-100 relative">
         <img className="w-100 h-100" style={{ objectFit: 'cover', objectPosition: 'center center', opacity: 0.8 }} src={field} alt=""/>
       </div>
       <VideoTile className="vid-2" grayscale={true} objectPosition="center bottom" videoPath="/media/city-2.mp4" opacity={0.8} />
+      {/* <VideoTile className="vid-3" grayscale={true} objectPosition="center top" videoPath="/media/nature.mp4" opacity={0.7} /> */}
       <VideoTile className="city-tile" objectPosition="center bottom" videoPath="/media/city-morning.mp4" opacity={1} />
       <VideoTile className="ocean-tile" startingIndex={1} objectPosition="left center" videoPath="/media/ocean-3.mp4" opacity={1} />
     </header>

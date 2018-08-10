@@ -29,11 +29,11 @@ class VideoTile extends Component {
   }
 
   onMouseEnter(e) {
-    this.refs.vidRef.pause();
+    this.refs.vidRef.playbackRate = 5;
   }
 
   onMouseOut(e) {
-    this.refs.vidRef.play();
+    this.refs.vidRef.playbackRate = 1;
   }
 
   render() {
