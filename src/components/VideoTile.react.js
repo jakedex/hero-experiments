@@ -38,7 +38,7 @@ class VideoTile extends Component {
 
   render() {
     return (
-        <div onClick={this.onClick} onMouseEnter={this.onMouseEnter} onMouseOut={this.onMouseOut} className={`outline w-100 h-100 relative ${this.props.className}`} style={{ cursor: 'crosshair', background: COLORS[this.state.colorIndex], overflow: 'hidden' }}>
+        <div onClick={this.onClick} onMouseEnter={this.onMouseEnter} onMouseOut={this.onMouseOut} className={`outline w-100 h-100 relative ${this.props.className}`} style={{ cursor: 'crosshair', background: !this.props.grayscale && COLORS[this.state.colorIndex], overflow: 'hidden' }}>
           <video ref="vidRef" src={this.props.videoPath} type="video/mp4" autoPlay={true} loop={true} style={{ objectFit: 'cover', objectPosition: this.props.objectPosition || 'top', opacity: this.props.opacity || 0.5, mixBlendMode: 'soft-light' }} class="w-100 h-100" />
         </div>
     );
